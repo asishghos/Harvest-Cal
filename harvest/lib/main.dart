@@ -196,9 +196,9 @@ class CustomersView extends StatelessWidget {
                     children: [
                       Text('Records: ${customerRecords.length}'),
                       Text('Total Cost: \$${totalCost.toStringAsFixed(2)}'),
-                      Text('Paid: \$${totalPaid.toStringAsFixed(2)}'),
+                      Text('Paid: \₹${totalPaid.toStringAsFixed(2)}'),
                       Text(
-                        'Remaining: \$${totalRemaining.toStringAsFixed(2)}',
+                        'Remaining: \₹${totalRemaining.toStringAsFixed(2)}',
                         style: TextStyle(
                           color: totalRemaining > 0 ? Colors.red : Colors.green,
                           fontWeight: FontWeight.bold,
@@ -258,10 +258,10 @@ class CustomerDetailView extends StatelessWidget {
                   ),
                   Text('Land Size: ${record.landSize} acres'),
                   Text('Quantity: ${record.harvestQuantity} tons'),
-                  Text('Total Cost: \$${record.totalCost.toStringAsFixed(2)}'),
-                  Text('Paid: \$${record.paidAmount.toStringAsFixed(2)}'),
+                  Text('Total Cost: \₹${record.totalCost.toStringAsFixed(2)}'),
+                  Text('Paid: \₹${record.paidAmount.toStringAsFixed(2)}'),
                   Text(
-                    'Remaining: \$${record.remainingAmount.toStringAsFixed(2)}',
+                    'Remaining: \₹${record.remainingAmount.toStringAsFixed(2)}',
                     style: TextStyle(
                       color: record.remainingAmount > 0
                           ? Colors.red
@@ -287,7 +287,7 @@ class CustomerDetailView extends StatelessWidget {
 
   void _showPaymentDialog(BuildContext context, HarvestRecord record) {
     TextEditingController paymentController = TextEditingController(
-      text: record.paidAmount.toString(),
+      text: record.remainingAmount.toStringAsFixed(2),
     );
 
     showDialog(
@@ -298,14 +298,14 @@ class CustomerDetailView extends StatelessWidget {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Total Cost: \$${record.totalCost.toStringAsFixed(2)}'),
+              Text('Total Cost: \₹${record.totalCost.toStringAsFixed(2)}'),
               SizedBox(height: 10),
               TextField(
                 controller: paymentController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'Paid Amount',
-                  prefixText: '\$',
+                  prefixText: '\₹',
                 ),
               ),
             ],
@@ -402,9 +402,9 @@ class LocationsView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text('\$${record.totalCost.toStringAsFixed(2)}'),
+                          Text('\₹${record.totalCost.toStringAsFixed(2)}'),
                           Text(
-                            'Remaining: \$${record.remainingAmount.toStringAsFixed(2)}',
+                            'Remaining: \₹${record.remainingAmount.toStringAsFixed(2)}',
                             style: TextStyle(
                               color: record.remainingAmount > 0
                                   ? Colors.red
@@ -490,9 +490,9 @@ class DatesView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text('\$${record.totalCost.toStringAsFixed(2)}'),
+                          Text('\₹${record.totalCost.toStringAsFixed(2)}'),
                           Text(
-                            'Remaining: \$${record.remainingAmount.toStringAsFixed(2)}',
+                            'Remaining: \₹${record.remainingAmount.toStringAsFixed(2)}',
                             style: TextStyle(
                               color: record.remainingAmount > 0
                                   ? Colors.red
@@ -954,8 +954,8 @@ class PaymentUpdateView extends StatelessWidget {
                       Text(
                         'Date: ${DateFormat('MMM dd, yyyy').format(record.harvestDate)}',
                       ),
-                      Text('Total: \$${record.totalCost.toStringAsFixed(2)}'),
-                      Text('Paid: \$${record.paidAmount.toStringAsFixed(2)}'),
+                      Text('Total: \₹${record.totalCost.toStringAsFixed(2)}'),
+                      Text('Paid: \₹${record.paidAmount.toStringAsFixed(2)}'),
                     ],
                   ),
                   trailing: Column(
@@ -995,14 +995,14 @@ class PaymentUpdateView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text('Customer: ${record.customerName}'),
-              Text('Remaining: \$${record.remainingAmount.toStringAsFixed(2)}'),
+              Text('Remaining: \₹${record.remainingAmount.toStringAsFixed(2)}'),
               SizedBox(height: 10),
               TextField(
                 controller: paymentController,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: 'Payment Amount',
-                  prefixText: '\$',
+                  prefixText: '\₹',
                 ),
               ),
             ],
